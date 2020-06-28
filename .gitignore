@@ -1,0 +1,9 @@
+# Settings
+/.vscode/
+# Build files
+/build/
+# Binaries
+*.exe
+*.lib
+# Macros
+*.bat
