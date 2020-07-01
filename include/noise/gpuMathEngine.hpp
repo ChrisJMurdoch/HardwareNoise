@@ -1,7 +1,7 @@
 
 #pragma once
 
-#include <math/mathEngine.hpp>
+#include <noise/mathEngine.hpp>
 
 #include <cuda_runtime_api.h>
 
@@ -15,7 +15,7 @@ public:
     GPUMathEngine();
 
     /** Create heightmap on gpu */
-    Heightmap generateHeightMap(std::map<std::string, std::string> &settings, int dimension, float xOff=0, float yOff=0 ) override;
+    Matrix generateHeightMap(std::map<std::string, std::string> &settings, int dimension, float xOff=0, float yOff=0 ) override;
 
 private:
 

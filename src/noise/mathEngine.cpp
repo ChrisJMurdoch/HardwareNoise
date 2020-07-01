@@ -1,5 +1,5 @@
 
-#include <math/mathEngine.hpp>
+#include <noise/mathEngine.hpp>
 
 MathEngine::Sample MathEngine::getSample( std::string str )
 {

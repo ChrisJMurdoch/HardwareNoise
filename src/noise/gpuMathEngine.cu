@@ -1,5 +1,5 @@
 
-#include <math/gpuMathEngine.hpp>
+#include <noise/gpuMathEngine.hpp>
 
 #include <utility/log.hpp>
 
@@ -68,7 +68,7 @@ void heightmapKernel(float *out, int dimension, float min, float max, GPUMathEng
     while ( y<dimension );
 }
 
-Heightmap GPUMathEngine::generateHeightMap(std::map<std::string, std::string> &settings, int dimension, float xOff, float yOff )
+Matrix GPUMathEngine::generateHeightMap(std::map<std::string, std::string> &settings, int dimension, float xOff, float yOff )
 {
     float min = stof(settings["min"]),
           max = stof(settings["max"]);
@@ -76,7 +76,7 @@ Heightmap GPUMathEngine::generateHeightMap(std::map<std::string, std::string> &s
         octaves = stoi(settings["octaves"]);
     Sample sample = getSample( settings["sampling"] );
     float *nodes = new float[dimension*dimension];
-    Heightmap hm(dimension, dimension);
+    Matrix hm(dimension, dimension);
 
     // Allocate device memory
     float *d_out;

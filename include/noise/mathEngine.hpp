@@ -1,7 +1,7 @@
 
 #pragma once
 
-#include <generation/heightmap.hpp>
+#include <utility/matrix.hpp>
 
 #include <map>
 #include <string>
@@ -19,5 +19,5 @@ protected:
 
 public:
     /** Create heightmap */
-    virtual Heightmap generateHeightMap(std::map<std::string, std::string> &settings, int dimension, float xOff=0, float yOff=0 ) = 0;
+    virtual Matrix generateHeightMap(std::map<std::string, std::string> &settings, int dimension, float xOff=0, float yOff=0 ) = 0;
 };

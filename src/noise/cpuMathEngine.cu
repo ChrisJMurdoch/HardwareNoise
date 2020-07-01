@@ -1,5 +1,5 @@
 
-#include <math/cpuMathEngine.hpp>
+#include <noise/cpuMathEngine.hpp>
 
 #include <glm/glm.hpp>
 namespace cpucommon
@@ -11,7 +11,7 @@ namespace cpucommon
 
 // FUNCTIONS
 
-Heightmap CPUMathEngine::generateHeightMap(std::map<std::string, std::string> &settings, int dimension, float xOff, float yOff )
+Matrix CPUMathEngine::generateHeightMap(std::map<std::string, std::string> &settings, int dimension, float xOff, float yOff )
 {
     // Get settings
     float min = stof(settings["min"]),
@@ -20,7 +20,7 @@ Heightmap CPUMathEngine::generateHeightMap(std::map<std::string, std::string> &s
         octaves = stoi(settings["octaves"]);
     Sample sample = getSample( settings["sampling"] );
 
-    Heightmap hm(dimension, dimension);
+    Matrix hm(dimension, dimension);
     
     for (int y=0; y<dimension; y++) for (int x=0; x<dimension; x++)
     {
