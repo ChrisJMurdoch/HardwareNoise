@@ -19,13 +19,14 @@ Heightmap CPUMathEngine::generateHeightMap(std::map<std::string, std::string> &s
     int period = stoi(settings["period"]),
         octaves = stoi(settings["octaves"]);
     Sample sample = getSample( settings["sampling"] );
-    float *nodes = new float[dimension*dimension];
+
+    Heightmap hm(dimension, dimension);
     
     for (int y=0; y<dimension; y++) for (int x=0; x<dimension; x++)
     {
         if ( x==0 || x==dimension-1 || y==0 || y==dimension-1 )
         {
-            nodes[y*dimension + x] = -10;
+            hm[y][x] = -10;
             continue;
         }
 
@@ -41,8 +42,8 @@ Heightmap CPUMathEngine::generateHeightMap(std::map<std::string, std::string> &s
             break;
         }
         
-        nodes[y*dimension + x] = min + ( value * (max-min) );
+        hm[y][x] = min + ( value * (max-min) );
     }
 
-    return Heightmap(&nodes, dimension);
+    return hm;
 }

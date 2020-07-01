@@ -1,21 +1,20 @@
 
 #pragma once
 
-#include <map>
-#include <string>
+#include <vector>
 
 class Heightmap
 {
-public:
-    float *nodes;
-    int nNodes;
+private:
+    std::vector<float> data;
+    int rows, cols;
 
 public:
-    /** Standard memcpy ctor */
-    Heightmap( float *values, int width );
+    Heightmap(int rows, int cols);
 
-    /** Move ctor, takes array and leaves nullptr */
-    Heightmap( float **values, int width );
+    /** Return pointer to sub-array */
+    float *operator[](int row);
 
-    ~Heightmap();
+    /** Number of members in matrix */
+    int size();
 };

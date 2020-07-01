@@ -1,23 +1,18 @@
 
 #include <generation/heightmap.hpp>
 
-#include <string>
-
-Heightmap::Heightmap( float *values, int width )
+Heightmap::Heightmap(int rows, int cols) : data(rows*cols)
 {
-    nNodes = width*width;
-    nodes = new float[nNodes];
-    memcpy( nodes, values, nNodes*sizeof(float) );
+    this->rows = rows;
+    this->cols = cols;
 }
 
-Heightmap::Heightmap( float **values, int width )
+float *Heightmap::operator[](int row)
 {
-    nNodes = width*width;
-    nodes = *values;
-    values = nullptr;
+    return &data[cols*row];
 }
 
-Heightmap::~Heightmap()
+int Heightmap::size()
 {
-    delete[] nodes;
+    return rows*cols;
 }

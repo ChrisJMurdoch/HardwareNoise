@@ -76,16 +76,17 @@ Heightmap GPUMathEngine::generateHeightMap(std::map<std::string, std::string> &s
         octaves = stoi(settings["octaves"]);
     Sample sample = getSample( settings["sampling"] );
     float *nodes = new float[dimension*dimension];
+    Heightmap hm(dimension, dimension);
 
     // Allocate device memory
     float *d_out;
     int size = dimension*dimension*sizeof(float);
     cudaCheck( cudaMalloc( (void **)&d_out, size ) );
     heightmapKernel<<<nSM, WARPS*32>>>( d_out, dimension, min, max, sample, period, octaves );
-    cudaCheck( cudaMemcpy(nodes, d_out, size, cudaMemcpyDeviceToHost) );
+    cudaCheck( cudaMemcpy(&hm[0][0], d_out, size, cudaMemcpyDeviceToHost) );
     cudaCheck( cudaFree(d_out) );
 
-    return Heightmap(&nodes, dimension);
+    return hm;
 }
 
 // MACROS
