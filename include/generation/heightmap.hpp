@@ -1,8 +1,6 @@
 
 #pragma once
 
-#include <math/mathEngine.hpp>
-
 #include <map>
 #include <string>
 
@@ -13,7 +11,11 @@ public:
     int nNodes;
 
 public:
-    Heightmap( std::map<std::string, std::string> &settings, int width, MathEngine *math );
-    void erode(MathEngine *math, int droplets, int radius);
+    /** Standard memcpy ctor */
+    Heightmap( float *values, int width );
+
+    /** Move ctor, takes array and leaves nullptr */
+    Heightmap( float **values, int width );
+
     ~Heightmap();
 };

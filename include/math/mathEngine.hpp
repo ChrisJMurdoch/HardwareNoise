@@ -1,17 +1,23 @@
 
 #pragma once
 
+#include <generation/heightmap.hpp>
+
+#include <map>
+#include <string>
+
 /** Maths engine interface to abstract cpu and gpu implementations */
 class MathEngine
 {
 public:
-
     /** Type of point sampling for heightmap generation */
     enum Sample { hash, sin, perlin, perlinRidge, mountain };
 
-    /** Create heightmap */
-    virtual void generateHeightMap(float *out, int dimension, float min, float max, Sample sample, float period, int octaves=1) = 0;
+protected:
+    /** Map strings to enums */
+    Sample getSample( std::string str );
 
-    /** Erode terrain heightmap */
-    virtual void erode(float *map, int width, int droplets, int radius) = 0;
+public:
+    /** Create heightmap */
+    virtual Heightmap generateHeightMap(std::map<std::string, std::string> &settings, int dimension, float xOff=0, float yOff=0 ) = 0;
 };
