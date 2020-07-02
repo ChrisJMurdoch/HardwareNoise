@@ -54,6 +54,9 @@ void heightmapKernel(float *out, int dimension, float min, float max, GPUMathEng
         case GPUMathEngine::mountain:
             value = gpucommon::mountain(x, y, period);
             break;
+        case GPUMathEngine::plateau:
+            value = gpucommon::plateau(x, y, period);
+            break;
         default:
             value = gpucommon::fractal(x, y, period, sample, octaves);
             break;

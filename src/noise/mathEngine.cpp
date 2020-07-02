@@ -13,6 +13,8 @@ MathEngine::Sample MathEngine::getSample( std::string str )
         return MathEngine::perlinRidge;
     else if ( strcmp(s, "mountain") == 0 )
         return MathEngine::mountain;
+    else if ( strcmp(s, "plateau") == 0 )
+        return MathEngine::plateau;
     else
         return MathEngine::hash;
 }

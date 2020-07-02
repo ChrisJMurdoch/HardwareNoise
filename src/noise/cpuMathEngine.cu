@@ -37,6 +37,9 @@ Matrix CPUMathEngine::generateHeightMap(std::map<std::string, std::string> &sett
         case mountain:
             value = cpucommon::mountain(x, y, period);
             break;
+        case plateau:
+            value = cpucommon::plateau(x, y, period);
+            break;
         default:
             value = cpucommon::fractal(x, y, period, sample, octaves);
             break;

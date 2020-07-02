@@ -208,30 +208,5 @@ float mountain(int x, int y, float period)
 __host__ __device__
 float plateau(int x, int y, float period)
 {
-    // Domain distortion
-    float distortion = 50;
-    float dx = x + perlinSample(x, y, period/1) * distortion;
-    float dy = y + perlinSample(x+9999, y+9999, period/2) * distortion;
-
-    // Amplitudes
-    float a1 = 32;
-    float a2 = 16;
-    float a3 = 8;
-    float a4 = 4;
-    float a5 = 0;
-    float a6 = 0;
-
-    // Terrain samples
-    float s1 = perlinSample(dx, dy, period/ 1);
-    float s2 = perlinSample(dx, dy, period/ 2);
-    float s3 = perlinSample(dx, dy, period/ 4);
-    float s4 = perlinSample(dx, dy, period/ 8);
-    float s5 = perlinSample(x, y, period/16);
-    float s6 = perlinSample(x, y, period/32);
-
-    // Merge
-    float amp = a1 + a2 + a3 + a4 + a5 + a6;
-    float stepped = ( (s1*a1) + (s2*a2) + (s3*a3) + (s4*a4) + (s5*a5) + (s6*a6) ) / amp;
-    float unstepped = ( 0 ) / amp;
-    return ( step( diverge(stepped), 10, 20) + unstepped );
+    return step( mountain(x, y, period), 4, 40);
 }

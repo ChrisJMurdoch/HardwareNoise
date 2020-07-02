@@ -11,7 +11,7 @@ class MathEngine
 {
 public:
     /** Type of point sampling for heightmap generation */
-    enum Sample { hash, sin, perlin, perlinRidge, mountain };
+    enum Sample { hash, sin, perlin, perlinRidge, mountain, plateau };
 
 protected:
     /** Map strings to enums */
